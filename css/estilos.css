@@ -1,9 +1,9 @@
 * { margin: 0; padding: 0; }
 
 span {font-style: italic;}
-body { background: url(../img/fondo.jpg) no-repeat top center;
+body { background: url(../img/fondo_2.jpg) no-repeat top center;
   font-family: arial, helvetica, sans-serif;
-background-size: 2000px; }
+background-size: 1900px; }
 #contenedor { width: 960px; margin: 0 auto; }
 #redes { position: fixed; }
 #cabecera { position: relative; padding-top: 20px; }
