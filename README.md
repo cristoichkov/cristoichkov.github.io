@@ -1,1 +1,1 @@
-# github pages cristoichkov
+# cristoichkov
