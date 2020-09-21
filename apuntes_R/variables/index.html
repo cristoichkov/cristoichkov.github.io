@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> Operaciones aritméticas básicas </title>
+  <title> Variables </title>
   <meta name="description" content="Soy candidato a Doctor en Ciencias Biológicas en el Jardín Botánico del IB-UNAM bajo la tutoría del Dr. Salvador Arias. Mi proyecto tiene como objetivo principal establecer los límites taxonómicos al interior de Mammillaria haageana y entre especies de la serie Supertextae. A lo largo de mi formación académica desarrolle un interés particular en la ciencia de datos y me he especializado específicamente en el programa R, por ello en este sitio web encontrarás apuntes sobre el manejo y uso de R.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
-  <meta property="og:title" content="Operaciones aritméticas básicas" />
+  <meta property="og:title" content="Variables" />
 <meta property="og:description" content="Before 1.7.0_06, String has 4 non static field:
  char[] value int[] offset int count int hash  Subing.substring create a String by sharing the original String&rsquo;s internal char[] value and setting offset. This saves memory and makes String.substring run in a constant time($O(1)$). Meanwhile, this feature may cause memory leak1.
 http://hg.openjdk.java.net/jdk6/jdk6/jdk/file/8deef18bb749/src/share/classes/java/lang/String.java
@@ -19,7 +19,7 @@ public final class String implements java.io.Serializable, Comparable&lt;String&
 <meta property="article:modified_time" content="2020-06-06T09:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Changes to String in java (from 1.7.0_06)"/>
+<meta name="twitter:title" content="Variables"/>
 <meta name="twitter:description" content="Before 1.7.0_06, String has 4 non static field:
  char[] value int[] offset int count int hash  Subing.substring create a String by sharing the original String&rsquo;s internal char[] value and setting offset. This saves memory and makes String.substring run in a constant time($O(1)$). Meanwhile, this feature may cause memory leak1.
 http://hg.openjdk.java.net/jdk6/jdk6/jdk/file/8deef18bb749/src/share/classes/java/lang/String.java
@@ -170,13 +170,13 @@ public final class String implements java.io.Serializable, Comparable&lt;String&
   <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <header>
       <h1 class="posttitle" itemprop="name headline">
-        Operaciones aritméticas básicas
+        Variables
       </h1>
       <div class="meta">
         
         <div class="postdate">
           
-          <time datetime="2020-09-20 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-09-20</time>
+          <time datetime="2020-09-20 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-09-21</time>
           
         </div>
         
@@ -194,7 +194,7 @@ public final class String implements java.io.Serializable, Comparable&lt;String&
             <i class="fas fa-tag"></i>
             
             
-            <a class="tag-link" href="/tags/operadores" rel="tag">Operadores</a>
+            <a class="tag-link" href="/tags/variables" rel="tag">Variables</a>
             
         </div> 
         
@@ -204,62 +204,84 @@ public final class String implements java.io.Serializable, Comparable&lt;String&
   
     <div class="content" itemprop="articleBody">
 
-<p> Se pueden realizar operaciones aritméticas básicas, por lo tanto, R funciona como una calculadora de modo interactivo. </p>
+        <h3>Variable (programación)</h3>
         
-<p>R cuenta con los siguientes operadores aritméticos:</p>
-        <div id="mostrar_tabla">
-       <table class="table table-striped" id="tabla" name="tabla" style="font-size: 10pt">
-       <tr>
-          <th style="text-align:center">Operador</th>
-          <th style="text-align:center">Operación</th>
-       </tr>
-            <tr>
-                <td style="text-align:center">+</td>
-                <td style="text-align:center">Suma</td>
-           </tr>
-           <tr>
-                <td style="text-align:center">-</td>
-               <td style="text-align:center">Resta</td>
-           </tr>
-            <tr>
-                <td style="text-align:center">*</td>
-               <td style="text-align:center">Multiplicación</td>
-           </tr>
-            <tr>
-                <td style="text-align:center">/</td>
-               <td style="text-align:center">División</td>
-           </tr>
-           <tr>
-                <td style="text-align:center">^</td>
-               <td style="text-align:center">Potencia</td>
-           </tr>
-           <tr>
-                <td style="text-align:center">%%</td>
-               <td style="text-align:center">Módulo o residuo</td>
-           </tr>
-       </table>
-</div>
+<p> Una variable es utilizada por los lenguajes de programación para almacenar datos que serán usados posteriormente por el programa. En R se pueden asignar objetos (valores, vectores, matrices, funciones, etc.) a una variable utilizando el símbolo <code>&#61</code> o <code>&#60&#45</code>. Los mas apropiado es utilizar <code>&#60&#45</code>, ya que el símbolo <code>&#61</code> puede ocasionar confusiones en la interpretación de los códigos tanto para R y el humano. </p>
         
     <!-- <strong>memory leak</strong><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p> bold y superindice-->
 
     <!-- <p><a href="http://hg.openjdk.java.net/jdk6/jdk6/jdk/file/8deef18bb749/src/share/classes/java/lang/String.java">http://hg.openjdk.java.net/jdk6/jdk6/jdk/file/8deef18bb749/src/share/classes/java/lang/String.java</a></p> link -->
         
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Operaciones aritméticas básicas</span> 
-<span style="color:#bdad6e">5</span> <span style="color:#7fa7bb">+</span> <span style="color:#bdad6e">8</span>
-<span style="color:#bdad6e">10</span> <span style="color:#7fa7bb">-</span> <span style="color:#bdad6e">5</span>
-<span style="color:#bdad6e">3</span> <span style="color:#7fa7bb">*</span> <span style="color:#bdad6e">5</span>
-<span style="color:#bdad6e">9</span> <span style="color:#7fa7bb">/</span> <span style="color:#bdad6e">3</span>
-<span style="color:#bdad6e">2</span> <span style="color:#7fa7bb">^</span> <span style="color:#bdad6e">2</span>
-<span style="color:#bdad6e">12</span> <span style="color:#7fa7bb">%%</span> <span style="color:#bdad6e">2</span>
-</code></pre><p style="color:#2b2c34">Nota: en R y en otros lenguajes de programación, el símbolo # se utiliza para comentar los códigos.</p></div>
-        
-<p>Para calcular operaciones aritméticas sin paréntesis R realiza las operaciones de izquierda a derecha. Sin embargo, con el uso correcto de paréntesis podemos determinar el orden y la prioridad de unas sobre otras operaciones.</p>
-        
-        <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Operaciones aritméticas sin parentesis</span> 
-<span style="color:#bdad6e">5</span> <span style="color:#7fa7bb">+</span> <span style="color:#bdad6e">3</span> <span style="color:#7fa7bb">/</span> <span style="color:#bdad6e">2</span>
-<span style="color:#a5a6aa">## Operaciones aritméticas con parentesis</span> 
-<span style="color:#c05c30">(</span><span style="color:#bdad6e">5</span> <span style="color:#7fa7bb">+</span> <span style="color:#bdad6e">3</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">/</span> <span style="color:#bdad6e">2</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## se pueden asignar números</span> 
+<span style="color:#ffffff">x</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">3</span>
+<span style="color:#ffffff">y</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">6</span>
+<span style="color:#a5a6aa">## realizar operaciones entre las variables</span>
+<span style="color:#ffffff">x</span> <span style="color:#7fa7bb">*</span> <span style="color:#bdad6e">y</span>
+<span style="color:#a5a6aa">##  para asignar palabras o letras se tienen que poner entre comillas</span>
+<span style="color:#ffffff">w</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffff00">"manzana"</span>
 </code></pre></div>
+        
+<p>El nombre de las variables puede incluir letras, números, puntos y guiones bajos, aunque existen algunas reglas:</p>
+        
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## No puede iniciar con un número ni con un guion bajo</span> 
+<span style="color:#ffffff">11psb</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">25</span>
+<span style="color:#ffffff">_psb</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">25</span>
+
+<span style="color:#a5a6aa">## Puede iniciar con un punto seguido de una letra</span>
+<span style="color:#ffffff">.psb11</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">6</span> 
+<span style="color:#a5a6aa">## Que pasa con la variable cuando el nombre inicia con un punto primero?</span>
+
+<span style="color:#a5a6aa">## No es recomendable utilizar palabras reservadas o claves que utiliza R</span>
+<span style="color:#ffffff">sum</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">30</span> 
+<span style="color:#ffffff">sum</span><span style="color:#c05c30">(</span><span style="color:#ffffff">sum</span><span style="color:#c05c30">)</span>
+
+<span style="color:#a5a6aa">## Los caracteres especiales como '#', '&#38', etc., junto con espacios en blanco (tabulaciones, espacio) no están permitidos en un nombre de variable.</span>
+<span style="color:#ffffff">rf</span><span style="color:#7fa7bb">&#38</span><span>sd</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">30</span> 
+</code></pre></div>
+    
+        <img src="../../images/R_as_var.png" width="250">
+        
+        <h3>Variable (estadística)</h3>
+        
+        <p>Una variable en estadística es el valor de una característica que interese registrar de un objeto de estudio.</p>
+     
+   <dl><dt>Cualitativas</dt><dd>se refieren a características o cualidades que no pueden ser medidas con números.</dd></dl>
+        <ul>
+        <li>Nominal.- presenta modalidades no numéricas que no admiten un criterio de orden. Ejemplos:</li> 
+            <ol>Color de pétalos: rojo, azul, amarillo y naranja.</ol>
+            <ol>Margen de la hoja: dentado, aserrado, lobado y entero.</ol>    
+        </ul>
+        
+        <ul>
+        <li>Ordinal.- presenta modalidades no numéricas, en las que existe un orden. Ejemplos:</li> 
+            <ol>Vértebra.- primera, segunda, tercera, etc.</ol>
+            <ol>Raíz.- principal, secundaria y terciaria.</ol>    
+        </ul>
+
+    <dl><dt>Cuantitativas</dt><dd>se refiere a atributos que expresan una cantidad o cantidad de magnitud y por tanto toma valores numéricos.</dd></dl>
+        <ul>
+        <li>Discreta.- son variables numéricas que tienen un número contable de valores. Ejemplo:</li> 
+            <ol>Número de espinas.- 15, 17, 25, 28, etc.</ol>
+            <ol>Número de tépalos.- 20, 18, 36, 23, etc.</ol>    
+        </ul>
+        
+        <ul>
+        <li>Continua.- son variables numéricas que tienen un número infinito de valores. Ejemplo:</li> 
+            <ol>Longitud de la región hilomicropilar.- 1.2, 2.3, 1.8, 3.2, etc.</ol>
+            <ol>Ancho del tallo.- 7.8, 4.6, 6.5, 5.6, 6.6, etc.</ol>    
+        </ul>
+
+<h3>Estructuras de datos en R</h3>
+        <p>Tipos de datos en R:</p>
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Variable cuantitativa</span> 
+<span style="color:#a5a6aa">##Discreta</span> 
+<span style="color:#ffffff">typeof</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">5L</span><span style="color:#c05c30">)</span> <span style="color:#a5a6aa">## es necesario poner L después del número para forzar a que sea un integer</span>
+<span style="color:#a5a6aa">##Continua</span>
+<span style="color:#ffffff">typeof</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">5.5</span><span style="color:#c05c30">)</span> <span style="color:#a5a6aa">## double en otros lenguajes se conocen como float, son números que permiten decimales</span>
+
+<span style="color:#a5a6aa">## Variable cualitativa -  R siempre tomara las variables cualitativas como nominales</span> 
+<span style="color:#ffffff">typeof</span><span style="color:#c05c30">(</span><span style="color:#ffff00">"manzana"</span><span style="color:#c05c30">)</span> <span style="color:#a5a6aa">## character siempre se ponen entre comillas</span>
+</code></pre><p style="color:#2b2c34">Nota: en R podemos transformar una variable cualitativa nominal a ordinal, mediante un comando que se explicara más adelante. </p></div>
         
       </div>
   </article>
