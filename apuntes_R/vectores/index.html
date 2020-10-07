@@ -166,8 +166,10 @@
         
  <p>El largo de un vector indica el número de elementos que contiene, en el ejemplo tenemos que el largo del vector es de 6. </p>    
         
-<h3> Vectores en R </h3>           
-
+<h3> Vectores en R </h3>      
+        
+<b><p>Función <code>c()</code> (combinar)</p></b> 
+        
 <p>Mediante la función <b><code>c()</code></b> podemos combinar valores y crear un vector. </p>        
         
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Combinar números para formar un vector</span> 
@@ -179,6 +181,17 @@
 <span style="color:#a5a6aa">## También se pueden crear vectores lógicos</span> 
 <span style="color:#ffffff">vec_log</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#d5b1e7">FALSE</span><span style="color:#ffffff">,</span><span style="color:#d5b1e7">FALSE</span><span style="color:#ffffff">,</span><span style="color:#d5b1e7">TRUE</span><span style="color:#ffffff">,</span><span style="color:#d5b1e7">FALSE</span><span style="color:#ffffff">,</span><span style="color:#d5b1e7">TRUE</span><span style="color:#c05c30">)</span>
 </code></pre></div>
+        
+    <p>También se pueden agregar nuevos elementos a un vector y combinar más de dos vectores.</p>      
+      
+   <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#ffffff">vec_num_1</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">3</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">10</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">6</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">5</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">7</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Agregar nuevos elementos a un vector </span>
+<span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_num_1</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">10</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">6</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Combinar los dos vectores anteriores</span>
+<span style="color:#ffffff">vec_num_2</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">15</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">20</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">13</span><span style="color:#c05c30">)</span>   
+<span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_num_1</span><span style="color:#ffffff">, </span><span style="color:#ffffff">vec_num_2</span><span style="color:#c05c30">)</span>
+</code></pre></div>     
+        
         
 <p> La función <b><code>typeof()</code></b> se utiliza para conocer el tipo o modo de almacenamiento de cualquier objeto. </p> 
         
@@ -194,13 +207,17 @@
 <span style="color:#ffffff">vec_num_and_char</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"A"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">10</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">7</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"V"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">5</span><span style="color:#c05c30">)</span>
 </code></pre></div>      
         
-<p>Para transformar un vector numérico a carácter se puede utilizar la función <b><code>as.character()</code></b> y para convertir nuevamente a número se utiliza la función <b><code>as.numeric()</code></b>. </p>        
+<b><p>Coerción Explícita</p></b>        
+        
+<p>En programación la coerción permite convertir, implícita o explícitamente, un objeto a otro. Para convertrir un vector numérico a carácter se puede utilizar la función <b><code>as.character()</code></b> y para convertir nuevamente a número se utiliza la función <b><code>as.numeric()</code></b>. </p>        
         
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Transformar un vector numérico a carácter</span> 
 <span style="color:#ffffff">vec_num_as_char</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">as.character</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">vec_num</span><span style="color:#c05c30">)</span>
 <span style="color:#a5a6aa">## Transformar un vector de carácter a numérico</span> 
 <span style="color:#ffffff">vec_char_and_num</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">as.numeric</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">vec_num_as_char</span><span style="color:#c05c30">)</span>
 </code></pre></div>    
+
+<b><p>Crear vectores de elementos consecutivos </p></b>
         
 <p>También podemos crear vectores numéricos con el operador <b><code>:</code></b>, el cual generará una secuencia de números que va del primer valor hasta el segundo valor.
 </p>
@@ -240,6 +257,8 @@ style="color:#c05c30">)</span>
       </div>
   </article>
 
+<b><p>Longitud de un vector</p></b>
+      
   <p>Para conocer la longitud de un vector (cuántos elementos contiene) se utiliza la función <b><code>length()</code></b>.</p> 
   
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Longitud de un vector</span> 
@@ -247,6 +266,7 @@ style="color:#c05c30">)</span>
 <span style="color:#ffffff">length</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">vec_num</span><span style="color:#c05c30">)</span>
 </code></pre></div>  
 
+<b><p>Acceder a los elementos de un vector</p></b>
       
   <p>Se puede acceder a los elementos de un vector mediante indexación vectorial utilizando los corchetes <b><code>[]</code></b>. El índice vectorial en R comienza desde 1, a diferencia de la mayoría de los lenguajes de programación donde el índice comienza desde 0.</p> 
 
@@ -266,7 +286,10 @@ style="color:#c05c30">)</span>
 <span style="color:#ffffff">vec_num</span><span style="color:#c05c30">[</span><span style="color:#ffffff">vec_num</span> <span style="color:#7fa7bb">&lt;=</span> <span style="color:#bdad6e">5</span><span style="color:#c05c30">]</span>
 </code></pre></div>  
       
-<p>Las operaciones aritméticas de vectores se pueden realizan elemento por elemento.</p> 
+      
+<b><p>Operaciones aritméticas con vectores</p></b>
+      
+<p>Las operaciones aritméticas con vectores se pueden realizan elemento por elemento.</p> 
     
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#ffffff">x</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">3</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">10</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">6</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">5</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">7</span><span style="color:#c05c30">)</span>
 <span style="color:#a5a6aa">## Sumar 5 a cada elemento del vectores</span>
@@ -347,6 +370,37 @@ style="color:#c05c30">)</span>
 <span style="color:#a5a6aa">## Para ignorar los elementos NA o NaN se utiliza el argumento na.rm=TRUE</span>
 <span style="color:#ffffff">mean</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">vec_num</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">na.rm</span> <span style="color:#7fa7bb">=</span> <span style="color:#d5b1e7">TRUE</span><span style="color:#c05c30">)</span>
 </code></pre></div>            
+
+<b><p>Ordenar vectores</p></b>
+      
+<p>Para ordenar los elementos de un vector en forma ascendente o descendente se utiliza la función <b><code>sort()</code></b>.</p> 
+      
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#ffffff">vec_num</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">3</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">10</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">6</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">5</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">7</span><span style="color:#c05c30">)</span>
+<span style="color:#ffffff">vec_char</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"C"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"L"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"A"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"Z"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"J"</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Ordenar de forma ascendente</span>
+<span style="color:#ffffff">sort</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_num</span><span style="color:#c05c30">)</span>
+<span style="color:#ffffff">sort</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_char</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Ordenar de forma descendente</span>
+<span style="color:#ffffff">sort</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_num</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decreasing</span> <span style="color:#7fa7bb">=</span> <span style="color:#d5b1e7">TRUE</span><span style="color:#c05c30">)</span>
+<span style="color:#ffffff">sort</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_char</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decreasing</span> <span style="color:#7fa7bb">=</span> <span style="color:#d5b1e7">TRUE</span><span style="color:#c05c30">)</span>
+</code></pre></div>        
+      
+<p>Para trabajar de una manera más sencilla las variables cualitativas en R podemos convertirlas a factores. Los factores son los objetos que se utilizan para categorizar los datos y almacenarlos como niveles.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Crear un vector con algunos meses del año</span>
+<span style="color:#ffffff">meses</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">rep</span><span style="color:#c05c30">(</span><span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"diciembre"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"febrero"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"octubre"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"enero"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"abril"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">times</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">3</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Ver que clase de objeto es el vector meses</span>
+<span style="color:#ffffff">class</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">meses</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Transformar el vector meses a factor</span>
+<span style="color:#ffffff">meses</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">factor</span><span style="color:#c05c30">(</span><span style="color:#ffffff">meses</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Corroborar que el vector meses se transformó a factor </span>
+<span style="color:#ffffff">class</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">meses</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Conocer los niveles del vector meses </span>
+<span style="color:#ffffff">levels</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">meses</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## ordenar los niveles del vector meses</span>
+<span style="color:#ffffff">meses</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">ordered</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">meses</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">levels</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"enero"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"febrero"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"abril"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"octubre"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"diciembre"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
+<span style="color:#ffffff">levels</span><span style="color:#c05c30">(</span><span style="color:#ffffffe">meses</span><span style="color:#c05c30">)</span>
+</code></pre></div>    
       
       
   <div id="footer-post-container">
