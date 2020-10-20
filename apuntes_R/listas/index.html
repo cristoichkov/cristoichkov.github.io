@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> Data Frames </title>
+  <title> Listas </title>
   <meta name="description" content="Soy candidato a Doctor en Ciencias Biológicas en el Jardín Botánico del IB-UNAM bajo la tutoría del Dr. Salvador Arias. Mi proyecto tiene como objetivo principal establecer los límites taxonómicos al interior de Mammillaria haageana y entre especies de la serie Supertextae. A lo largo de mi formación académica desarrolle un interés particular en la ciencia de datos y me he especializado específicamente en el programa R, por ello en este sitio web encontrarás apuntes sobre el manejo y uso de R.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
-  <meta property="og:title" content="Matrices" />
-<meta property="og:description" content="Un data frame podría traducirse como una hoja de datos o marco de datos." />
+  <meta property="og:title" content="Listas" />
+<meta property="og:description" content="Una lista en R es un objeto que consiste en una colección de objetos ordenados conocidos como componentes. Los tipos de datos que podemos almacenar en una lista van desde simples caracteres, números, vectores, matrices, data frames, entre otros tipos de objetos." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cristoichkov.github.io/apuntes_R/dataframes/" />
+<meta property="og:url" content="https://cristoichkov.github.io/apuntes_R/listas/" />
 <meta property="article:published_time" content="2020-06-06T09:00:00+00:00" />
 <meta property="article:modified_time" content="2020-06-06T09:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Data Frames"/>
-<meta name="twitter:description" content="Un data frame podría traducirse como una hoja de datos o marco de datos."/>
+<meta name="twitter:title" content="Listas"/>
+<meta name="twitter:description" content="Una lista en R es un objeto que consiste en una colección de objetos ordenados conocidos como componentes. Los tipos de datos que podemos almacenar en una lista van desde simples caracteres, números, vectores, matrices, data frames, entre otros tipos de objetos."/>
 
   
   
@@ -119,13 +119,13 @@
   <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <header>
       <h1 class="posttitle" itemprop="name headline">
-        Data Frames
+        Listas
       </h1>
       <div class="meta">
         
         <div class="postdate">
           
-          <time datetime="2020-09-20 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-10-14</time>
+          <time datetime="2020-09-20 09:00:00 &#43;0000 UTC" itemprop="datePublished">2020-10-20</time>
           
         </div>
         
@@ -143,7 +143,7 @@
             <i class="fas fa-tag"></i>
             
             
-            <a class="tag-link" href="/temas/dataframes/" rel="tag">Data_Frames</a>
+            <a class="tag-link" href="/temas/listas/" rel="tag">Listas</a>
             
         </div> 
         
@@ -153,137 +153,69 @@
   
     <div class="content" itemprop="articleBody">
 
-<p> Un data frame podría traducirse como una hoja de datos o marco de datos. La estructura de un data frame es muy similar a la de una matriz, la diferencia es que una matriz solo admite valores de un mismo tipo, mientras que en un data frame puede incluir diferente tipos de datos.</p>
-        
-<div id="mostrar_tabla">
-       <table class="table table-striped" id="tabla" name="tabla" style="font-size: 10pt">
-       <tr>
-          <th style="text-align:center">Tipo de variable</th>
-          <th style="text-align:center">Ejemplo</th>
-           <th style="text-align:center">Clase de objeto en R</th>
-       </tr>
-            <tr>
-                <td style="text-align:center">Cuantitativa discreta</td>
-                <td style="text-align:center">1</td>
-                <td style="text-align:center">integer</td>
-           </tr>
-           <tr>
-                <td style="text-align:center">Cuantitativa continua</td>
-                <td style="text-align:center">1.5</td>
-                <td style="text-align:center">numeric</td>
-           </tr>
-            <tr>
-                <td style="text-align:center">Cualitativa nominal</td>
-               <td style="text-align:center">Gato</td>
-                <td style="text-align:center">character o factor</td>
-           </tr>
-            <tr>
-                <td style="text-align:center">Cualitativa ordinal</td>
-               <td style="text-align:center">Gato</td>
-                <td style="text-align:center">factor</td>
-           </tr>
-           <tr>
-               <td style="text-align:center">Lógico</td>
-               <td style="text-align:center">TRUE</td>
-                <td style="text-align:center">logical</td>
-           </tr>
-           <tr>
-           </tr>
-       </table>
-</div>
-
-<b><p>Factores</p></b>      
-
-        
-<p>Los factores son usados para representar las variables cualitativas o categóricas. Por defecto los factores no tienen orden (variable cualitativa nominal), pero el usuario puede establecer un orden (variable cualitativa ordinal). Los factores son importantes ya que serán utilizados análisis estadísticos y gráficos. Para ordenar una variable cualitativa en R puede revisar la seccion de como  <a href=" https://cristoichkov.github.io/apuntes_R/vectores/">Ordenar vectores</a>.</p>    
+<p> Una lista en R es un objeto que consiste en una colección de objetos ordenados conocidos como componentes. Los tipos de datos que podemos almacenar en una lista van desde simples caracteres, números, vectores, matrices, data frames, entre otros tipos de objetos.</p>
         
 
-<b><p>Operadores relacionales</p></b>   
-        
-<p>Las expresiones booleanas de comparación son declaraciones lógicas que son verdaderas o falsas. Para nuestros propósitos, a menudo usaremos expresiones booleanas para comparar cantidades. Por ejemplo, la expresión booleana <b><code> 1 &lt 2 </code></b> es verdadera, mientras que la expresión booleana <b><code> 1 &gt 2 </code></b> es falsa.</p>      
-        
-<div id="mostrar_tabla">
-       <table class="table table-striped" id="tabla" name="tabla" style="font-size: 10pt">
-       <tr>
-          <th style="text-align:center">Operador</th>
-          <th style="text-align:center">Descripción</th>
-       </tr>
-            <tr>
-                <td style="text-align:center"><code>&lt;</code></td>
-                <td style="text-align:center">menor que</td>
-           </tr>
-           <tr>
-                <td style="text-align:center"><code>&lt;=</code></td>
-                <td style="text-align:center">Menor o igual</td>
-           </tr>
-            <tr>
-                <td style="text-align:center"><code>&gt;</code></td>
-               <td style="text-align:center">Mayor que</td>
-           </tr>
-            <tr>
-                <td style="text-align:center"><code>&gt;=</code></td>
-                <td style="text-align:center">Menor o igual</td>
-           </tr>
-           <tr>
-               <td style="text-align:center"><code>==</code></td>
-                <td style="text-align:center">Igual</td>
-           </tr>
-           <tr>
-               <td style="text-align:center"><code>!=</code></td>
-                <td style="text-align:center">Distindo de</td>
-           </tr>
-           <tr>
-           </tr>
-       </table>
-</div>        
+<b><p>Crear una Listas</p></b>      
 
+ <p>Para crear una lista podemos utilizar la función <b><code>list()</code></b> y los argumentos serán los elementos que queremos incluir.</p>       
 
-<b><p>Crear Data Frames</p></b>    
-        
-<p>Se pueden crear data frames con la función <b><code>data.frame()</code></b>.</p>        
-        
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Crear vectores con diferentes tipos de datos</span>
-<span style="color:#ffffff">entero</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">1</span><span style="color:#7fa7bb">:</span><span style="color:#bdad6e">4</span> 
-<span style="color:#ffffff">factor</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">factor</span><span style="color:#c05c30">(</span><span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"a"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"b"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"c"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"d"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
-<span style="color:#ffffff">numero</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">1.2</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">3.4</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">4.5</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">5.6</span><span style="color:#c05c30">)</span>
-<span style="color:#ffffff">cadena</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">as.character</span><span style="color:#c05c30">(</span><span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"a"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"b"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"c"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"d"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
-<span style="color:#ffffff">logico</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">as.logical</span><span style="color:#c05c30">(</span><span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"TRUE"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"FALSE"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"FALSE"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"TRUE"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Unir todos los vectores en un df</span>
-<span style="color:#ffffff">my_df</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">data.frame</span><span style="color:#c05c30">(</span><span style="color:#ffffff">entero</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">factor</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">numero</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">cadena</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">logico</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Revisar la estructura de los datos</span>
-<span style="color:#ffffff">str</span><span style="color:#c05c30">(</span><span style="color:#ffffff">my_df</span><span style="color:#c05c30">)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Asignar un carácter</span>
+<span style="color:#ffffff">char</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">"A"</span>
+<span style="color:#a5a6aa">## Asignar un número</span>
+<span style="color:#ffffff">num</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">23</span>
+<span style="color:#a5a6aa">## Crear un vector numérico</span>
+<span style="color:#ffffff">vec_num</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">5</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">9</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">3</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">11</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">7</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Crear un vector de caracteres</span>
+<span style="color:#ffffff">vec_char</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"blanco"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"rojo"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"azul"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"rojo"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"blanco"</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Crear una matriz de numérica</span>
+<span style="color:#ffffff">mat_x</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">matrix</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">1</span><span style="color:#7fa7bb">:</span><span style="color:#bdad6e">9</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">nrow</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">3</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">ncol</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">3</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Asignar un data frame</span>
+<span style="color:#ffffff">iris</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">iris</span>
+<span style="color:#a5a6aa">## Crear la lista con todos los objetos antes creados utilizando la función list</span>
+<span style="color:#ffffff">all_obj</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">list</span><span style="color:#c05c30">(</span><span style="color:#ffffff">char</span><span style="color:#ffffff">,</span><span style="color:#ffffff">num</span><span style="color:#ffffff">,</span><span style="color:#ffffff">vec_num</span><span style="color:#ffffff">,</span><span style="color:#ffffff">vec_char</span><span style="color:#ffffff">,</span><span style="color:#ffffff">mat_x</span><span style="color:#ffffff">,</span><span style="color:#ffffff">iris</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Revisar la clase de objeto</span>
+<span style="color:#ffffff">class</span><span style="color:#c05c30">(</span><span style="color:#ffffff">all_obj</span><span style="color:#c05c30">)</span>
 </code></pre></div>
         
-<b><p>Set de datos Iris</p></b>
+<b><p>Acceder a los componentes de una lista</p></b>    
+
+<p>Los componentes de las listas se encuentran en el orden que se colocaron y la forma de acceder a ellos es con doble corchete <b><code>[[]]</code></b>.  </p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Revisamos la estructura de los datos</span>
+<span style="color:#ffffff">str</span><span style="color:#c05c30">(</span><span style="color:#ffffff">all_obj</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Entramos al 4to componente de la lista que es un vector </span>
+<span style="color:#ffffff">all_obj</span><span style="color:#c05c30">[</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">4</span><span style="color:#c05c30">]</span><span style="color:#c05c30">]</span>
+<span style="color:#a5a6aa">## Como es un vector podemos acceder al 3er elemento poniendo enseguida corchetes </span>
+<span style="color:#ffffff">all_obj</span><span style="color:#c05c30">[</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">4</span><span style="color:#c05c30">]</span><span style="color:#c05c30">]</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">3</span><span style="color:#c05c30">]</span>
+<span style="color:#a5a6aa">## Podemos asignar los componentes a variables </span>
+<span style="color:#ffffff">df_iris</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">all_obj</span><span style="color:#c05c30">[</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">6</span><span style="color:#c05c30">]</span><span style="color:#c05c30">]</span>
+<span style="color:#a5a6aa">## O podemos trabajar el data frame directamente de la lista  </span>
+<span style="color:#ffffff">all_obj</span><span style="color:#c05c30">[</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">6</span><span style="color:#c05c30">]</span><span style="color:#c05c30">]</span><span style="color:#7fa7bb">$</span><span style="color:#ffffff">Species</span>
+</code></pre></div>
         
-<p>Ronald Fisher trabajo con tres especies de <i>Iris</i> (<i>I. setosa</i>, <i>I. virginica</i> e <i>I. versicolor</i>), he hizo la medición del largo y ancho del pétalo y sépalo. Estos cuantifican la variación morfológica de la flor, todas las medidas están en centímetros.</p> 
+<b><p>Cambiar los nombres de los componentes de una lista</p></b>     
+
+<p>Podemos cambiar los nombres de los componentes de la lista y de esa manera podremos acceder a ellos utilizando el operador <b><code>$</code>.</b></p>   
+    
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Asignar nombres al la lista</span>
+<span style="color:#ffffff">names</span><span style="color:#c05c30">(</span><span style="color:#ffffff">all_obj</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"uno"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"dos"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"tres"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"cuatro"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"cinco"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"seis"</span><span style="color:#c05c30">)</span> 
+<span style="color:#a5a6aa">## Podemos acceder al 3er compomente utilizando el operador $</span>
+<span style="color:#ffffff">all_obj</span><span style="color:#7fa7bb">$</span><span style="color:#ffffff">tres</span>
+<span style="color:#a5a6aa">## Podemos acceder al 5to elemto del vector</span>
+<span style="color:#ffffff">all_obj</span><span style="color:#7fa7bb">$</span><span style="color:#ffffff">tres</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">5</span><span style="color:#c05c30">]</span>
+</code></pre></div>
         
-        <img src="../../images/iris.png" width="500">
-        
-<b><p>Visualización rápida de Datos</p></b>    
-        
-<p>En R tenemos dos comandos que suelen ir de la mano que permiten visualizar los primeros y últimos elementos de un data frame, también podemos obtener un resumen estadístico rápido de los datos.</p>        
-        
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Ver hasta las primeras 6 filas</span>
-<span style="color:#ffffff">head</span><span style="color:#c05c30">(</span><span style="color:#ffffff">iris</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Ver hasta las ultimas 6 filas</span>
-<span style="color:#ffffff">tail</span><span style="color:#c05c30">(</span><span style="color:#ffffff">iris</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Resumen rápido de los datos</span>
-<span style="color:#ffffff">summary</span><span style="color:#c05c30">(</span><span style="color:#ffffff">iris</span><span style="color:#c05c30">)</span>
+<b><p>Agregar, eliminar y cambiar nombres de los componentes en una lista</p></b>       
+    
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Agregar un nuevo componente</span>
+<span style="color:#ffffff">vec_nuevo</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">100</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">80</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">76</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">82</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">97</span><span style="color:#c05c30">)</span>
+<span style="color:#ffffff">all_obj</span><span style="color:#c05c30">[</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">7</span><span style="color:#c05c30">]</span><span style="color:#c05c30">]</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">vec_nuevo</span>
+<span style="color:#a5a6aa">## Eliminar componente de una lista </span>
+<span style="color:#ffffff">all_obj</span><span style="color:#c05c30">[</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">2</span><span style="color:#c05c30">]</span><span style="color:#c05c30">]</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#d5b1e7">NULL</span>
+<span style="color:#a5a6aa">## Cambiar el nombre de un componente de una lista </span>
+<span style="color:#ffffff">names</span><span style="color:#c05c30">(</span><span style="color:#ffffff">all_obj</span><span style="color:#c05c30">)</span><span style="color:#c05c30">[</span><span style="color:#bdad6e">6</span><span style="color:#c05c30">]</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#bdad6e">"siete"</span>
 </code></pre></div>        
-
-<b><p>Acceder a los elementos de un data frames</p></b>      
-
-<p>Es similar a una matriz utilizando los corchetes <b><code>[]</code></b>, poniendo primero el número de fila y en seguida el número de columna separados por una coma. En los data frames tambien podemos acceder a las columnas utilizando el operador <b><code>$</code></b>.</p>        
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Selecciona la variable Species</span>
-<span style="color:#ffffff">iris</span><span style="color:#7fa7bb">$</span><span style="color:#ffffff">Species</span>    
-<span style="color:#a5a6aa">## Selecciona la variable ancho del pétalo</span>
-<span style="color:#ffffff">iris</span><span style="color:#7fa7bb">$</span><span style="color:#ffffff">Petal.Width</span> 
-<span style="color:#a5a6aa">## Seleccionar la especie setosa</span> 
-<span style="color:#ffffff">iris</span><span style="color:#c05c30">[</span><span style="color:#ffffff">iris</span><span style="color:#7fa7bb">$</span><span style="color:#ffffff">Species</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"setosa"</span><span style="color:#ffffff">,</span> <span style="color:#c05c30">]</span>
-</code></pre></div>              
-
         
       </div>
   </article>
