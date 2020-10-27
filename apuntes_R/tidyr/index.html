@@ -167,36 +167,144 @@
         
 
 
-<p> Los tibbles (que se pronuncia /tibls/) son al igual que los data frames hojas de datos o marco de datos. Los tibbles fueron creados para modificar características antiguas de los data frames que son objetos de la base de R.</p> 
+<p> El objetivo principal del paquete <b><code>tidyr</code></b> es ordenar los datos en donde: </p> 
         
-<b><p>Crear tibbles</p></b>
+        <ul>
+        <li>Cada columna es variable. </li>
+            
+        <li>Cada fila es una observación.</li>
+            
+        <li>Cada celda es un valor único. </li>
         
-<p>Generalmente las funciones de Tydiverse crean tibbles, ya que son una de sus principales características. Sin embargo, R siempre trabaja con la base y posiblemente te encontraras que la mayoría de las bases son leídas como data frames. </p>      
+        </ul>
+        
+<b><p>Formato ancho y formato largo</p></b>
+        
+<p>El formato ancho es común en hojas de cálculo donde se toman los datos, ya que resulta más práctico para el usuario visualizar y anotar. En la siguiente tabla se tomó la altura de tres plantas en tres localidades diferentes. Este formato es fácil de interpretar y visualizar para nosotros, sin embargo, es un formato difícil de trabajar para R.</p>  
+        
+<div id="mostrar_tabla">
+       <table class="table table-striped" id="tabla" name="tabla" style="font-size: 10pt">
+       <tr>
+          <th style="text-align:center">Localidad</th>
+           <th style="text-align:center">Planta_1</th>
+           <th style="text-align:center">Planta_2</th>
+           <th style="text-align:center">Planta_3</th>
+       </tr>
+            <tr>
+                <th style="text-align:center">Punto_1</th>
+           <th style="text-align:center">5.1</th>
+           <th style="text-align:center">6.2</th>
+           <th style="text-align:center">8.3</th>
     
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Cargar el paquete  tibble</span>
-<span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tibble</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Crear un nuevo tibble</span>
-<span style="color:#ffffff">vec_num</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">3</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">10</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">6</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">5</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">7</span><span style="color:#c05c30">)</span>
-<span style="color:#ffffff">vec_char</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"A"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"K"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"Z"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"V"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"X"</span><span style="color:#c05c30">)</span>
-<span style="color:#ffffff">tb_df</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">tibble</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_num</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">vec_char</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Revisamos la clase del objeto</span>
-<span style="color:#ffffff">class</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tb_df</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Convertir un la base de datos iris a tibble </span>
-<span style="color:#ffffff">tb_iris</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">as.tibble</span><span style="color:#c05c30">(</span><span style="color:#ffffff">iris</span><span style="color:#c05c30">)</span>
+           </tr>
+           <tr>
+               <th style="text-align:center">Punto_2</th>
+           <th style="text-align:center">10.2</th>
+           <th style="text-align:center">13.3</th>
+           <th style="text-align:center">14.5</th>
+           </tr>
+            <tr>
+               <th style="text-align:center">Punto_3</th>
+           <th style="text-align:center">20.3</th>
+           <th style="text-align:center">21.8</th>
+           <th style="text-align:center">25.1</th>
+           </tr>
+
+           <tr>
+           </tr>
+       </table>
+</div>   
+        
+<p>En el formato largo cada variable ocupa una columna y cada observación una fila. Si transformamos el formato ancho a largo tendremos que una columna correspondería a la localidad, otra a la planta y la última a la medición de la altura.</p>  
+        
+        <div id="mostrar_tabla">
+       <table class="table table-striped" id="tabla" name="tabla" style="font-size: 10pt">
+       <tr>
+          <th style="text-align:center">Localidad</th>
+           <th style="text-align:center">Planta</th>
+           <th style="text-align:center">Altura</th>
+       </tr>
+            <tr>
+            <th style="text-align:center">Punto_1</th>
+           <th style="text-align:center">Planta_1</th>
+           <th style="text-align:center">5.1</th>
+    
+           </tr>
+           <tr>
+            <th style="text-align:center">Punto_2</th>
+           <th style="text-align:center">Planta_1</th>
+           <th style="text-align:center">10.2</th>
+           </tr>
+            <tr>
+            <th style="text-align:center">Punto_3</th>
+           <th style="text-align:center">Planta_1</th>
+           <th style="text-align:center">20.3</th>
+           </tr>
+           
+           <tr>
+            <th style="text-align:center">Punto_2</th>
+           <th style="text-align:center">Planta_2</th>
+           <th style="text-align:center">6.2</th>
+    
+           </tr>
+           <tr>
+            <th style="text-align:center">Punto_2</th>
+           <th style="text-align:center">Planta_2</th>
+           <th style="text-align:center">13.3</th>
+           </tr>
+            <tr>
+            <th style="text-align:center">Punto_3</th>
+           <th style="text-align:center">Planta_2</th>
+           <th style="text-align:center">21.8</th>
+           </tr>
+           
+           <tr>
+            <th style="text-align:center">Punto_1</th>
+           <th style="text-align:center">Planta_3</th>
+           <th style="text-align:center">8.3</th>
+    
+           </tr>
+           <tr>
+            <th style="text-align:center">Punto_2</th>
+           <th style="text-align:center">Planta_3</th>
+           <th style="text-align:center">14.5</th>
+           </tr>
+            <tr>
+            <th style="text-align:center">Punto_3</th>
+           <th style="text-align:center">Planta_3</th>
+           <th style="text-align:center">25.1</th>
+           </tr>
+
+           <tr>
+           </tr>
+       </table>
+</div>   
+
+<p>El paquete <b><code>tidyr</code></b> contiene la función <b><code>gather()</code></b> que permite pasar de un formato ancho a uno largo, mientras la función <b><code>spread()</code></b> permite pasar de un formato largo uno ancho. </p>        
+        
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Cargar el paquete  tidyr</span>
+<span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tidyr</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Crear un data frame</span>
+<span style="color:#ffffff">df_ancho</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">data.frame</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Localidad</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">paste</span><span style="color:#c05c30">(</span><span style="color:#ffffff">rep</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"Punto"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">3</span><span style="color:#c05c30">)</span><span style="color:#ffffff">, </span> <span style="color:#ffffff">seq</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">1</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">3</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">sep</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"_"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span>
+<span style="color:#ffffff">Planta_1</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">5.1</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">10.2</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">20.3</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span>
+<span style="color:#ffffff">Planta_2</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">6.2</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">13.3</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">21.8</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span>
+<span style="color:#ffffff">Planta_3</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">8.3</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">14.5</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">25.1</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Pasar de formato ancho a formato largo</span>
+<span style="color:#ffffff">df_largo</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">gather</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">df_ancho</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">key</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Planta"</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">value</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Altura"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">2</span><span style="color:#7fa7bb">:</span><span style="color:#bdad6e">4</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Pasar de formato largo a formato ancho</span>
+<span style="color:#ffffff">df_ancho_a</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">spread</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">df_largo</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">key</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Planta"</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">value</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Altura"</span><span style="color:#c05c30">)</span>
 </code></pre></div>
         
- <b><p>Visualización </p></b>
+ <b><p>Unir y separar columnas</p></b>
         
-<p>Una de las principales diferencias es la forma de visualizar los datos, los tibbles fueron creados con la intención de manejar grandes conjuntos de datos. La visualización de un tibble se hace con la función <b><code>print()</code></b> lo que permite aprovechar mejor el espacio en pantalla y muestra más información o información más relevante.</p>       
+<p>Mediante la función <b><code>unite()</code></b> podemos unir varias columnas en una sola y también podemos seleccionar un separador. La contra parte es la función <b><code>separate()</code></b> que nos permite separar una columna en varias de acuerdo a un separador presente.  </p>       
      
         
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Vizualizar las primeras 10 filas </span>
-<span style="color:#ffffff">print</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tb_iris</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Vizualizar las primeras 20 filas</span>
-<span style="color:#ffffff">print</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tb_iris</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">n</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">20</span><span style="color:#c05c30">)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Unir mediante ; las columnas Localidad y Planta del df df_largo </span>
+<span style="color:#ffffff">df_union</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">unite</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">df_largo</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">col</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">ID</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">Localidad</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">Planta</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">sep</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">";"</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Separar la columna ID de df_union mediante el ;</span>
+<span style="color:#ffffff">df_sep</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">separate</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">df_union</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">col</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">ID</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"Localidad"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"Planta"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">sep</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">";"</span><span style="color:#c05c30">)</span>
 </code></pre></div>
-        
-<p>Anteriormente vimos como manipular un data frame y un tibble mantiene ese mismo formato, por lo que no debería causarte ningún problema trabajar con él.  </p>
         
       </div>
   </article>
