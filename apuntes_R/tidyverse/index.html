@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> Tibbles </title>
+  <title> Tidyverse </title>
   <meta name="description" content="Soy candidato a Doctor en Ciencias Biológicas en el Jardín Botánico del IB-UNAM bajo la tutoría del Dr. Salvador Arias. Mi proyecto tiene como objetivo principal establecer los límites taxonómicos al interior de Mammillaria haageana y entre especies de la serie Supertextae. A lo largo de mi formación académica desarrolle un interés particular en la ciencia de datos y me he especializado específicamente en el programa R, por ello en este sitio web encontrarás apuntes sobre el manejo y uso de R.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
-  <meta property="og:title" content="Tibbles" />
-<meta property="og:description" content="Los tibbles fueron creados para modificar características antiguas de los data frames que son objetos de la base de R." />
+  <meta property="og:title" content="Tidyverse" />
+<meta property="og:description" content="Tydiverse es una colección de paquetes diseñados para la ciencia de datos." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cristoichkov.github.io/apuntes_R/tibbles/" />
+<meta property="og:url" content="https://cristoichkov.github.io/apuntes_R/tidyverse/" />
 <meta property="article:published_time" content="2020-06-06T09:00:00+00:00" />
 <meta property="article:modified_time" content="2020-06-06T09:00:00+00:00" />
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tibbles"/>
-<meta name="twitter:description" content="Los tibbles fueron creados para modificar características antiguas de los data frames que son objetos de la base de R."/>
+<meta name="twitter:title" content="Tidyverse"/>
+<meta name="twitter:description" content="Tydiverse es una colección de paquetes diseñados para la ciencia de datos."/>
 
   
   
@@ -119,7 +119,7 @@
   <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <header>
       <h1 class="posttitle" itemprop="name headline">
-        Tibbles
+        Tidyverse
       </h1>
       <div class="meta">
         
@@ -139,29 +139,13 @@
         </div>
         -->
         
-        <div class="article-tag">
-            <i class="fas fa-tag"></i>
-            
-            
-            <a class="tag-link" href="/temas/tibbles/" rel="tag">Tibbles</a>
-            
-        </div> 
-          
-          <div class="article-tag">
-            <i class="fas fa-tag"></i>
-            
-            
-            <a class="tag-link" href="/temas/dataframes/" rel="tag">Data_Frames</a>
-            
-        </div> 
-          
          <div class="article-tag">
             <i class="fas fa-tag"></i>
             
             
             <a class="tag-link" href="/temas/tidyverse/" rel="tag">Tidyverse</a>
             
-        </div>   
+        </div> 
         
       </div>
     </header>
@@ -169,41 +153,36 @@
   
     <div class="content" itemprop="articleBody">
         
-        <a href="https://tibble.tidyverse.org/" target="_blank">
-    <img class="package-image" src="https://d33wubrfki0l68.cloudfront.net/c477d7eb7fdf2c3d75637cfe19ff4a4d0a107bcf/017d0/css/images/hex/tibble.png" alt="" aria-hidden="true" width="100">
+         <a href="https://www.tidyverse.org/" target="_blank">
+    <img class="package-image" src="../../images/logo_tidyverse.png" alt="" aria-hidden="true" width="100">
     </a>
+        
 
-<p> Los tibbles (que se pronuncia /tibls/) son al igual que los data frames hojas de datos o marco de datos. Los tibbles fueron creados para modificar características antiguas de los data frames que son objetos de la base de R.</p> 
+<p> Tydiverse es una colección de paquetes diseñados para la ciencia de datos. La ciencia de datos fue un término que surgió en 2008 para referirse a los métodos, procesos, algoritmos y sistemas científicos para organizar y analizar cantidades masivas de datos.</p> 
+
+<p>La siguiente figura representa un proceso sugerido por Hadley Wichkam y Garrett Grolemund para la ciencia de datos y consta de varios pasos. </p>
         
-<b><p>Crear tibbles</p></b>
+    <img src="../../images/tidyverse_pro.png" width="600">  
         
-<p>Generalmente las funciones de Tydiverse crean tibbles, ya que son una de sus principales características. Sin embargo, R siempre trabaja con la base y posiblemente te encontraras que la mayoría de las bases son leídas como data frames. </p>      
-    
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Cargar el paquete  tibble</span>
-<span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tibble</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Crear un nuevo tibble</span>
-<span style="color:#ffffff">vec_num</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">3</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">10</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">6</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">5</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">7</span><span style="color:#c05c30">)</span>
-<span style="color:#ffffff">vec_char</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"A"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"K"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"Z"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"V"</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">"X"</span><span style="color:#c05c30">)</span>
-<span style="color:#ffffff">tb_df</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">tibble</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_num</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">vec_char</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Revisamos la clase del objeto</span>
-<span style="color:#ffffff">class</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tb_df</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Convertir un la base de datos iris a tibble </span>
-<span style="color:#ffffff">tb_iris</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">as.tibble</span><span style="color:#c05c30">(</span><span style="color:#ffffff">iris</span><span style="color:#c05c30">)</span>
-</code></pre></div>
+    <ul>
+        <li>Lo primero que se debe de hacer es importar sus datos en R. Una ves que los datos están en R es recomendable ordenarlos, esto significa que cada columna es una variable y cada fila es una observación. </li> 
         
- <b><p>Visualización </p></b>
+        <li>Una vez ordenados, un siguiente primer paso común es transformar los datos. La transformación incluye reducir las observaciones de interés, crear nuevas variables que sean funciones de variables existentes y calcular un conjunto de resumen estadísticas.</li>
         
-<p>Una de las principales diferencias es la forma de visualizar los datos, los tibbles fueron creados con la intención de manejar grandes conjuntos de datos. La visualización de un tibble se hace con la función <b><code>print()</code></b> lo que permite aprovechar mejor el espacio en pantalla y muestra más información o información más relevante.</p>       
-     
+        <li>El siguiente paso es la generación de conocimiento: visualización y modelado. La visualización es una actividad fundamentalmente humana. Una buena visualización le mostrará cosas que no esperaba o planteará nuevas preguntas sobre los datos. Los modelos son herramientas complementarias a la visualización. Una vez que haya hecho sus preguntas lo suficientemente precisas, puede usar un modelo para responderlas.</li>
         
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Vizualizar las primeras 10 filas </span>
-<span style="color:#ffffff">print</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tb_iris</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Vizualizar las primeras 20 filas</span>
-<span style="color:#ffffff">print</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tb_iris</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">n</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">20</span><span style="color:#c05c30">)</span>
-</code></pre></div>
+        <li>El último paso de la ciencia de datos es la comunicación, una parte absolutamente crítica de cualquier proyecto de análisis de datos. No importa qué tan bien sus modelos y visualización lo hayan llevado a comprender los datos, a menos que también pueda comunicar sus resultados a otras personas.</li>
         
-<p>Anteriormente vimos como manipular un data frame y un tibble mantiene ese mismo formato, por lo que no debería causarte ningún problema trabajar con él.  </p>
+    </ul>
+              
+<p>El proceso antes descrito suele ocupar aproximadamente el 80% del tiempo de un análisis de datos. Algunos pensaran que es demasiado tiempo, pero, en cualquier caso, es una tarea que ocupa tiempo y puede ser tediosa y frustrante si no cuenta con los conocimientos necesarios para llevarla a cabo. No es necesario ser un programador experto para ser un científico de datos, pero aprender más sobre programación vale la pena porque convertirse en un mejor programador le permite automatizar tareas comunes y resolver nuevos problemas con mayor facilidad.</p>        
         
+<b><p>Literatura</p></b> 
+
+<p>Hadley Wickham and Garrett Grolemund. 2017. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data (1st. ed.). O'Reilly Media, Inc.
+</p>
+        
+
       </div>
   </article>
 
