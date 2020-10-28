@@ -175,6 +175,8 @@
 
 <p> Los tibbles (que se pronuncia /tibls/) son al igual que los data frames hojas de datos o marco de datos. Los tibbles fueron creados para modificar características antiguas de los data frames que son objetos de la base de R.</p> 
         
+<p>Anteriormente vimos como manipular un data frame y un tibble mantiene ese mismo formato, por lo que no debería causarte ningún problema trabajar con él.  </p>
+        
 <b><p>Crear tibbles</p></b>
         
 <p>Generalmente las funciones de Tydiverse crean tibbles, ya que son una de sus principales características. Sin embargo, R siempre trabaja con la base y posiblemente te encontraras que la mayoría de las bases son leídas como data frames. </p>      
@@ -202,7 +204,19 @@
 <span style="color:#ffffff">print</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tb_iris</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">n</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">20</span><span style="color:#c05c30">)</span>
 </code></pre></div>
         
-<p>Anteriormente vimos como manipular un data frame y un tibble mantiene ese mismo formato, por lo que no debería causarte ningún problema trabajar con él.  </p>
+ <b><p>Nombres de filas</p></b>
+<p>Un tibble no permite la utilización de nombres de filas, si conviertes un data frame con nombres de filas a un tibble automáticamente se eliminaran. Esto permite una mejor compatibilidad con bases de datos masivas que provienen de programas como SQL, en donde los nombres de las filas no tienen sentido.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Asignarnos la base de datos mtcars a una variable </span>
+<span style="color:#ffffff">df_mtcars</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">mtcars</span>
+<span style="color:#a5a6aa">## Verificamos que contiene nombres de filas   </span>
+<span style="color:#ffffff">has_rownames</span><span style="color:#c05c30">(</span><span style="color:#ffffff">df_mtcars</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Convertir nombres de filas a columnas</span>
+<span style="color:#ffffff">df_mtcars</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">rownames_to_column</span><span style="color:#c05c30">(</span><span style="color:#ffffff">df_mtcars</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">var</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"auto"</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Convertir a tibble</span>
+<span style="color:#ffffff">tb_mtcars</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">as.tibble</span><span style="color:#c05c30">(</span><span style="color:#ffffff">df_mtcars</span><span style="color:#c05c30">)</span>
+</code></pre></div>        
+        
         
       </div>
   </article>
