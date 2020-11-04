@@ -165,144 +165,169 @@
         
 
 
-<p> El objetivo principal del paquete <b><code>tidyr</code></b> es ordenar los datos en donde: </p> 
+<p> El paquete <b><code>dplyr</code></b> ofrece un conjunto de herramientas para la manipulación de datos, aunque estas tareas también pueden ser llevadas a cabo con el paquete base de R, la simplicidad que provee <b><code>dplyr</code></b> facilita y agilizara tales operaciones.  </p> 
         
+<p>Las funciones principales que provee el paquete dplyr son:</p>
         <ul>
-        <li>Cada columna es variable. </li>
-            
-        <li>Cada fila es una observación.</li>
-            
-        <li>Cada celda es un valor único. </li>
-        
+            <li><b><code>select</code></b>: devuelve solo las columnas indicadas.</li>
+            <li><b><code>filter</code></b>: permite filtrar filas según una expresión lógica.</li>
+            <li><b><code>arrange</code></b>: ordena las filas en función de los valores de una o más columnas.</li>
+            <li><b><code>rename</code></b>: permite cambiar el nombre de una columna.</li>
+            <li><b><code>mutate</code></b>: permite agregar una nueva columna o transformar una existente.</li>
+            <li><b><code>distinct</code></b>: remueve las filas con valores duplicados.</li>
+            <li><b><code>summarise</code></b>: permite realizar resúmenes estadísticos de variables.</li>
+            <li><b><code>left_join</code></b>: Une dos data frames o tibbles de x a y.</li>
         </ul>
+   
+  <p> Para mostrar el funcionamiento de <b><code>dplyr</code></b> descargaremos 1000 registros para el género <i>Mammillaria</i> de la base de datos  <a href="https://www.gbif.org/what-is-gbif">GBIF (the Global Biodiversity Information Facility)</a>.</p>  
         
-<b><p>Formato ancho y formato largo</p></b>
-        
-<p>El formato ancho es común en hojas de cálculo donde se toman los datos, ya que resulta más práctico para el usuario visualizar y anotar. En la siguiente tabla se tomó la altura de tres plantas en tres localidades diferentes. Este formato es fácil de interpretar y visualizar para nosotros, sin embargo, es un formato difícil de trabajar para R.</p>  
-        
-<div id="mostrar_tabla">
-       <table class="table table-striped" id="tabla" name="tabla" style="font-size: 10pt">
-       <tr>
-          <th style="text-align:center">Localidad</th>
-           <th style="text-align:center">Planta_1</th>
-           <th style="text-align:center">Planta_2</th>
-           <th style="text-align:center">Planta_3</th>
-       </tr>
-            <tr>
-                <th style="text-align:center">Punto_1</th>
-           <th style="text-align:center">5.1</th>
-           <th style="text-align:center">6.2</th>
-           <th style="text-align:center">8.3</th>
-    
-           </tr>
-           <tr>
-               <th style="text-align:center">Punto_2</th>
-           <th style="text-align:center">10.2</th>
-           <th style="text-align:center">13.3</th>
-           <th style="text-align:center">14.5</th>
-           </tr>
-            <tr>
-               <th style="text-align:center">Punto_3</th>
-           <th style="text-align:center">20.3</th>
-           <th style="text-align:center">21.8</th>
-           <th style="text-align:center">25.1</th>
-           </tr>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Cargar el paquete  rgbif</span>
+<span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">rgbif</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Obtener 1000 registros de GBIF para el género Mammillaria</span> 
+<span style="color:#ffffff">Mammillaria</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">occ_search</span><span style="color:#c05c30">(</span><span style="color:#ffffff">scientificName</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Mammillaria"</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">limit</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">1000</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Asignar a una variable el componente data de la lista Mammillaria</span> 
+<span style="color:#ffffff">Mammillaria_gbif</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">Mammillaria</span><span style="color:#7fa7bb">$</span><span style="color:#ffffff">data</span>
+</code></pre></div>
+      
+<b><code>select()</code></b>        
+  <p>La base de datos de <i>Mammillaria</i> contiene 1000 observaciones y 92 variables, a veces no es necesario trabajar con todas las variables y podemos seleccionar solo aquellas con las que deseamos trabajar para simplificar nuestra base de datos.</p>     
 
-           <tr>
-           </tr>
-       </table>
-</div>   
         
-<p>En el formato largo cada variable ocupa una columna y cada observación una fila. Si transformamos el formato ancho a largo tendremos que una columna correspondería a la localidad, otra a la planta y la última a la medición de la altura.</p>  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Cargar el paquete  dplyr</span>
+<span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">dplyr</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Seleccionar las variables con las que vamos a trabar y asignamos el nuevo conjunto a Mammillaria_1</span>
+<span style="color:#ffffff">Mammillaria_1</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">select</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_gbif</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">family</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">species</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLongitude</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">country</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">stateProvince</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">year</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">month</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">day</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">verbatimLocality</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">recordedBy</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">identifiedBy</span><span style="color:#c05c30">)</span>
+</code></pre></div>
+        
+ <b><code>filter()</code></b>        
+  <p>Continuando con la depuración de nuestra base de datos, posiblemente tendremos que filtrar filas para conservar a las que satisfacen las condiciones dadas. Para conservarse, la fila debe producir un valor de VERDADERO para todas las condiciones. Existen operadores y funciones que son útiles al construir las expresiones utilizadas para filtrar los datos: </p>   
         
         <div id="mostrar_tabla">
        <table class="table table-striped" id="tabla" name="tabla" style="font-size: 10pt">
        <tr>
-          <th style="text-align:center">Localidad</th>
-           <th style="text-align:center">Planta</th>
-           <th style="text-align:center">Altura</th>
+          <th style="text-align:center">Operador</th>
+          <th style="text-align:center">Descripción</th>
        </tr>
             <tr>
-            <th style="text-align:center">Punto_1</th>
-           <th style="text-align:center">Planta_1</th>
-           <th style="text-align:center">5.1</th>
-    
+                <td style="text-align:center"><code>&lt;</code></td>
+                <td style="text-align:center">menor que</td>
            </tr>
            <tr>
-            <th style="text-align:center">Punto_2</th>
-           <th style="text-align:center">Planta_1</th>
-           <th style="text-align:center">10.2</th>
+                <td style="text-align:center"><code>&lt;=</code></td>
+                <td style="text-align:center">Menor o igual</td>
            </tr>
             <tr>
-            <th style="text-align:center">Punto_3</th>
-           <th style="text-align:center">Planta_1</th>
-           <th style="text-align:center">20.3</th>
+                <td style="text-align:center"><code>&gt;</code></td>
+               <td style="text-align:center">Mayor que</td>
+           </tr>
+            <tr>
+                <td style="text-align:center"><code>&gt;=</code></td>
+                <td style="text-align:center">Menor o igual</td>
+           </tr>
+           <tr>
+               <td style="text-align:center"><code>==</code></td>
+                <td style="text-align:center">Igual</td>
+           </tr>
+           <tr>
+               <td style="text-align:center"><code>!=</code></td>
+                <td style="text-align:center">Distindo de</td>
            </tr>
            
-           <tr>
-            <th style="text-align:center">Punto_2</th>
-           <th style="text-align:center">Planta_2</th>
-           <th style="text-align:center">6.2</th>
-    
-           </tr>
-           <tr>
-            <th style="text-align:center">Punto_2</th>
-           <th style="text-align:center">Planta_2</th>
-           <th style="text-align:center">13.3</th>
-           </tr>
             <tr>
-            <th style="text-align:center">Punto_3</th>
-           <th style="text-align:center">Planta_2</th>
-           <th style="text-align:center">21.8</th>
-           </tr>
-           
-           <tr>
-            <th style="text-align:center">Punto_1</th>
-           <th style="text-align:center">Planta_3</th>
-           <th style="text-align:center">8.3</th>
-    
-           </tr>
-           <tr>
-            <th style="text-align:center">Punto_2</th>
-           <th style="text-align:center">Planta_3</th>
-           <th style="text-align:center">14.5</th>
-           </tr>
-            <tr>
-            <th style="text-align:center">Punto_3</th>
-           <th style="text-align:center">Planta_3</th>
-           <th style="text-align:center">25.1</th>
+               <td style="text-align:center"><code>%in%</code></td>
+                <td style="text-align:center">Identificar si un elemento pertenece a un vector o data frame</td>
            </tr>
 
            <tr>
            </tr>
        </table>
-</div>   
+</div>       
 
-<p>El paquete <b><code>tidyr</code></b> contiene la función <b><code>gather()</code></b> que permite pasar de un formato ancho a uno largo, mientras la función <b><code>spread()</code></b> permite pasar de un formato largo uno ancho. </p>        
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Filtrar las especies de Mammillaria que esten en el estado de Puebla</span>  
+<span style="color:#ffffff">Mammillaria_2</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">stateProvince</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"Puebla"</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Filtrar las especies de Mammillaria que esten en latitudes menores a 21°</span>
+<span style="color:#ffffff">Mammillaria_3</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLatitude</span> <span style="color:#7fa7bb">&#60</span> <span style="color:#bdad6e">21</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Filtrar las especies de 	Mammillaria haageana, Mammillaria carnea y Mammillaria haageana</span>
+<span style="color:#a5a6aa">## Crear un vector con las especies antes mencionadas</span>
+<span style="color:#ffffff">Mammillaria_vec</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"Mammillaria karwinskiana"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"Mammillaria carnea"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"Mammillaria haageana"</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Utilizar %in% para filtrar las especies contenidas en el vector Mammillaria_vec</span>
+<span style="color:#ffffff">Mammillaria_4</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">species</span> <span style="color:#7fa7bb">%in%</span> <span style="color:#ffffff">Mammillaria_vec</span><span style="color:#c05c30">)</span>
+</code></pre></div>   
         
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Cargar el paquete  tidyr</span>
-<span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">tidyr</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Crear un data frame</span>
-<span style="color:#ffffff">df_ancho</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">data.frame</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Localidad</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">paste</span><span style="color:#c05c30">(</span><span style="color:#ffffff">rep</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"Punto"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">3</span><span style="color:#c05c30">)</span><span style="color:#ffffff">, </span> <span style="color:#ffffff">seq</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">1</span><span style="color:#ffffff">,</span><span style="color:#bdad6e">3</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">sep</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"_"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span>
-<span style="color:#ffffff">Planta_1</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">5.1</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">10.2</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">20.3</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span>
-<span style="color:#ffffff">Planta_2</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">6.2</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">13.3</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">21.8</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span>
-<span style="color:#ffffff">Planta_3</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">8.3</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">14.5</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">25.1</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Pasar de formato ancho a formato largo</span>
-<span style="color:#ffffff">df_largo</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">gather</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">df_ancho</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">key</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Planta"</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">value</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Altura"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">2</span><span style="color:#7fa7bb">:</span><span style="color:#bdad6e">4</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Pasar de formato largo a formato ancho</span>
-<span style="color:#ffffff">df_ancho_a</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">spread</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">df_largo</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">key</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Planta"</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">value</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Altura"</span><span style="color:#c05c30">)</span>
-</code></pre></div>
+<p>Muchas veces nuestras bases de datos tendrán datos ausentes (NAs) y será necesario eliminar esos registros. </p>        
         
- <b><p>Unir y separar columnas</p></b>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Eliminar NAs de decimalLatitude con ayuda de la funcion is.na()</span> 
+<span style="color:#ffffff">Mammillaria_5</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#7fa7bb">!</span><span style="color:#ffffff">is.na</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
+</code></pre></div>   
         
-<p>Mediante la función <b><code>unite()</code></b> podemos unir varias columnas en una sola y también podemos seleccionar un separador. La contra parte es la función <b><code>separate()</code></b> que nos permite separar una columna en varias de acuerdo a un separador presente.  </p>       
-     
+<p>En el caso de que tengamos múltiples argumentos para hacer un filtrado podemos utilizar los operadores boléanos como lo muestra la siguiente imagen: </p>        
         
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Unir mediante ; las columnas Localidad y Planta del df df_largo </span>
-<span style="color:#ffffff">df_union</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">unite</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">df_largo</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">col</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">ID</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">Localidad</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">Planta</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">sep</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">";"</span><span style="color:#c05c30">)</span>
-<span style="color:#a5a6aa">## Separar la columna ID de df_union mediante el ;</span>
-<span style="color:#ffffff">df_sep</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">separate</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">df_union</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">col</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">ID</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">c</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">"Localidad"</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"Planta"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">sep</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">";"</span><span style="color:#c05c30">)</span>
-</code></pre></div>
+<img src="../../images/boolean.png" width="650">
+
+<p>Por ejemplo, supongamos que <b><code>x</code></b> es la especie <i>Mammillaria haageana</i> y que <b><code>y</code></b> es el estado de Oaxaca.</p>
+        
+        <ul>
+            <li><code>y & !x</code>: que el estado se igual a Oaxaca pero distinto de  <i>Mammillaria haageana</i>.</li>
+            <li><code>x</code>: que la especie sea igual a <i>Mammillaria haageana</i>. </li>
+            <li><code>x | y</code>: que la especie sea igual a <i>Mammillaria haageana</i> o que el estado se igual a Oaxaca.</li>
+            <li><code>x & y</code>: que la especie sea igual a <i>Mammillaria haageana</i> y que el estado se igual a Oaxaca.</li>
+            <li><code>xor(x, y)</code>: devolverá todas las filas donde solo se cumpla una de las condiciones, y no cuando se cumplan ambas condiciones.</li>
+            <li><code>x & !y</code>: que la especie sea igual a <i>Mammillaria haageana</i> pero distinto de Oaxaca.</li>
+            <li><code>x</code>: que el estado se igual a Oaxaca. </li>
+        </ul>
+        
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Filtrar las filas que sean iguales al estado de Oaxaca y a la especie Mammillaria haageana</span> 
+<span style="color:#ffffff">Mammillaria_6</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">stateProvince</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"Oaxaca"</span> <span style="color:#7fa7bb">&</span>  <span style="color:#ffffff">species</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"Mammillaria haageana"</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Filtrar las filas que sean iguales al estado de Oaxaca o a la especie Mammillaria haageana</span> 
+<span style="color:#ffffff">Mammillaria_7</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">stateProvince</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"Oaxaca"</span> <span style="color:#7fa7bb">|</span>  <span style="color:#ffffff">species</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"Mammillaria haageana"</span><span style="color:#c05c30">)</span>
+</code></pre></div>   
+        
+<b><code>arrange()</code></b>         
+ 
+<p>También podemos ordenar las filas por los valores de las columnas seleccionadas.</p>    
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Ordenar de forma ascendente la latitud  </span>  
+<span style="color:#ffffff">Mammillaria_8</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">arrange</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLatitude</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Ordenar de forma descendente la latitud </span>
+<span style="color:#ffffff">Mammillaria_9</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">arrange</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">desc</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## Ordenar de forma ascendente por especie y la latitud  </span>  
+<span style="color:#ffffff">Mammillaria_10</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">arrange</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">species</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLatitude</span><span style="color:#c05c30">)</span>
+</code></pre></div> 
+        
+<b><code>rename()</code></b>        
+
+<p>Al igual que en la base de R podemos cambia los nombres de variables o columnas.</p>
+        
+
+        
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Cambiar el nombre de la variable family y species </span>  
+<span style="color:#ffffff">Mammillaria_11</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">rename</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">Familia</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">family</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">Especie</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">species</span><span style="color:#c05c30">)</span>
+</code></pre></div>    
+        
+<b><code>mutate()</code></b>         
+ 
+<p>Se pueden agregar nuevas variables a la base de datos a partir de las ya existentes.</p>
+        
+        
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Crear una funcion para convertir grados decimales a grados, minutos y segundos</span>
+<span style="color:#ffffff">dd2dms</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#d887b4">function</span><span style="color:#c05c30">(</span><span style="color:#ffffff">d1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">var</span><span style="color:#c05c30">)</span><span style="color:#c05c30">{</span>
+    <span style="color:#ffffff">left1</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">d1</span> <span style="color:#7fa7bb">*</span> <span style="color:#bdad6e">3600</span>
+    <span style="color:#ffffff">degs</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">trunc</span><span style="color:#c05c30">(</span><span style="color:#ffffff">left1</span><span style="color:#7fa7bb">/</span><span style="color:#bdad6e">3600</span><span style="color:#c05c30">)</span>
+    <span style="color:#ffffff">left2</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">left1</span> <span style="color:#7fa7bb">-</span> <span style="color:#ffffff">degs</span> <span style="color:#7fa7bb">*</span> <span style="color:#bdad6e">3600</span>
+    <span style="color:#ffffff">mins</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">trunc</span><span style="color:#c05c30">(</span><span style="color:#ffffff">left2</span><span style="color:#7fa7bb">/</span><span style="color:#bdad6e">60</span><span style="color:#c05c30">)</span>
+    <span style="color:#ffffff">osec</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">left2</span> <span style="color:#7fa7bb">-</span> <span style="color:#ffffff">mins</span> <span style="color:#7fa7bb">*</span> <span style="color:#c05c30">(</span><span style="color:#bdad6e">60</span><span style="color:#c05c30">)</span>
+    <span style="color:#d887b4">if</span> <span style="color:#c05c30">(</span><span style="color:#ffffff">var</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"d"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">{</span>
+        <span style="color:#d887b4">return</span><span style="color:#c05c30">(</span><span style="color:#ffffff">degs</span><span style="color:#c05c30">)</span>
+    <span style="color:#c05c30">}</span> <span style="color:#d887b4">else if</span> <span style="color:#c05c30">(</span><span style="color:#ffffff">var</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"m"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">{</span>
+        <span style="color:#d887b4">return</span><span style="color:#c05c30">(</span><span style="color:#ffffff">mins</span><span style="color:#c05c30">)</span>
+    <span style="color:#c05c30">}</span> <span style="color:#d887b4">else</span> <span style="color:#c05c30">{</span>
+        <span style="color:#d887b4">return</span><span style="color:#c05c30">(</span><span style="color:#ffffff">osec</span><span style="color:#c05c30">)</span>
+    <span style="color:#c05c30">}</span>
+<span style="color:#c05c30">}</span>
+<span style="color:#a5a6aa">## Convertir latitud en grados decimales a grados, minutos y segundos</span>    
+<span style="color:#ffffff">Mammillaria_12</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">mutate</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">Lat_gra</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">dd2dms</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"d"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> 
+                         <span style="color:#ffffff">Lat_min</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">dd2dms</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"m"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> 
+                         <span style="color:#ffffff">Lat_seg</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">dd2dms</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"s"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>    
+</code></pre></div>            
         
       </div>
   </article>
