@@ -175,8 +175,8 @@
             <li><b><code>rename</code></b>: permite cambiar el nombre de una columna.</li>
             <li><b><code>mutate</code></b>: permite agregar una nueva columna o transformar una existente.</li>
             <li><b><code>distinct</code></b>: remueve las filas con valores duplicados.</li>
+            <li><b><code>%>%</code></b>: permite realizar resúmenes estadísticos de variables.</li>
             <li><b><code>summarise</code></b>: permite realizar resúmenes estadísticos de variables.</li>
-            <li><b><code>left_join</code></b>: Une dos data frames o tibbles de x a y.</li>
         </ul>
    
   <p> Para mostrar el funcionamiento de <b><code>dplyr</code></b> descargaremos 1000 registros para el género <i>Mammillaria</i> de la base de datos  <a href="https://www.gbif.org/what-is-gbif">GBIF (the Global Biodiversity Information Facility)</a>.</p>  
@@ -328,6 +328,57 @@
                          <span style="color:#ffffff">Lat_min</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">dd2dms</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"m"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> 
                          <span style="color:#ffffff">Lat_seg</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">dd2dms</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"s"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>    
 </code></pre></div>            
+
+        
+<b><code>distinct()</code></b>   
+
+<p>Sirve para eliminar filas duplicadas y quedarnos con filas únicas.</p>        
+    
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Eliminar los estados repetidos y quedarnos con solo un solo estado por fila </span>   
+<span style="color:#ffffff">Mammillaria_13</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">distinct</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Mammillaria_1</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">stateProvince</span><span style="color:#c05c30">)</span>
+</code></pre></div>     
+        
+  <a href="https://magrittr.tidyverse.org/"><img src="../../images/magrittr.png" alt="dplyr hex sticker" width="100" class="r1 c0"></a>  
+        
+<p>El paquete <b><code>magrittr</code></b> ofrece un conjunto de operadores que hacen que su código sea más legible. En informática, una tubería (pipeline) consiste en una cadena de procesos conectados de forma tal que la salida de un proceso es la entrada del próximo. Dentro de <b><code>magrittr</code></b> el operador <b><code>%>%</code></b> es el utilizado como tubería para conectar varios procesos en uno.</p>
+
+        
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Utilizar el operador %>% para seleccionar columnas,
+## filtrar, crear nuevas variable y eliminar filas dulicadas</span>   
+<span style="color:#ffffff">Mammillaria_14</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">Mammillaria_gbif</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">select</span><span style="color:#c05c30">(</span><span style="color:#ffffff">family</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">species</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLongitude</span><span style="color:#ffffff">,</span>
+    <span style="color:#ffffff">country</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">stateProvince</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">year</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">month</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">day</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">verbatimLocality</span><span style="color:#ffffff">,</span> 
+    <span style="color:#ffffff">recordedBy</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">identifiedBy</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#ffffff">stateProvince</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"Puebla"</span> <span style="color:#7fa7bb">&</span>  <span style="color:#ffffff">species</span> <span style="color:#7fa7bb">==</span> <span style="color:#bdad6e">"Mammillaria haageana"</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">mutate</span><span style="color:#c05c30">(</span><span style="color:#ffffff">Lat_gra</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">dd2dms</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"d"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> 
+           <span style="color:#ffffff">Lat_min</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">dd2dms</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"m"</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> 
+           <span style="color:#ffffff">Lat_seg</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">dd2dms</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">"s"</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">distinct</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">.keep_all</span> <span style="color:#7fa7bb">=</span> <span style="color:#d5b1e7">TRUE</span><span style="color:#c05c30">)</span>
+</code></pre></div> 
+
+<p><b><code>group_by()</code></b>, <b><code>count()</code></b> y <b><code>summarise()</code></b></p>       
+    
+<p><b><code>group_by()</code></b> toma un data frame o un tibble existente y la convierte en una conjunto agrupado donde las operaciones se realizan "por grupo". <b><code>count()</code></b> es una función que se utiliza para hacer conteos o sumas (n) utilizando a <b><code>group_by()</code></b> para realizar las operaciones. <b><code>summarise()</code></b> crea un nuevo marco de datos que tendrá una (o más) filas para cada combinación de variables de agrupación dado por <b><code>group_by()</code></b>; si no hay variables de agrupación, la salida tendrá una sola fila que resume todas las observaciones de la entrada. Contendrá una columna para cada variable de agrupación y una columna para cada una de las estadísticas de resumen que haya especificado.</p>
+ 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Realizar un conteo de registros por especie</span> 
+<span style="color:#ffffff">Mammillaria_15</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">Mammillaria_gbif</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">select</span><span style="color:#c05c30">(</span><span style="color:#ffffff">family</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">species</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLongitude</span><span style="color:#ffffff">,</span>
+    <span style="color:#ffffff">country</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">stateProvince</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">year</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">month</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">day</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">verbatimLocality</span><span style="color:#ffffff">,</span> 
+    <span style="color:#ffffff">recordedBy</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">identifiedBy</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#7fa7bb">!</span><span style="color:#ffffff">is.na</span><span style="color:#c05c30">(</span><span style="color:#ffffff">species</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">group_by</span><span style="color:#c05c30">(</span><span style="color:#ffffff">species</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">count</span><span style="color:#c05c30">(</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">arrange</span><span style="color:#c05c30">(</span><span style="color:#ffffff">n</span><span style="color:#c05c30">)</span>
+    
+<span style="color:#a5a6aa">## Obtener el maximo y el minimo valor para la Longiud por estado</span> 
+<span style="color:#ffffff">Mammillaria_16</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">Mammillaria_gbif</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">select</span><span style="color:#c05c30">(</span><span style="color:#ffffff">family</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">species</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLatitude</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">decimalLongitude</span><span style="color:#ffffff">,</span>
+    <span style="color:#ffffff">country</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">stateProvince</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">year</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">month</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">day</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">verbatimLocality</span><span style="color:#ffffff">,</span> 
+    <span style="color:#ffffff">recordedBy</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">identifiedBy</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">filter</span><span style="color:#c05c30">(</span><span style="color:#7fa7bb">!</span><span style="color:#ffffff">is.na</span><span style="color:#c05c30">(</span><span style="color:#ffffff">stateProvince</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">group_by</span><span style="color:#c05c30">(</span><span style="color:#ffffff">stateProvince</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">%>%</span>
+    <span style="color:#ffffff">summarise</span><span style="color:#c05c30">(</span><span style="color:#ffffff">minlong</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">min</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLongitude</span><span style="color:#c05c30">)</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">maxlong</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">max</span><span style="color:#c05c30">(</span><span style="color:#ffffff">decimalLongitude</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span>
+</code></pre></div> 
         
       </div>
   </article>
