@@ -318,7 +318,7 @@
           <span style="color:#ffffff">legend.position</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"bottom"</span><span style="color:#ffffff">,</span>
           <span style="color:#ffffff">legend.text.align</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">0</span><span style="color:#ffffff">,</span>
           <span style="color:#ffffff">text</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">element_text</span><span style="color:#c05c30">(</span><span style="color:#ffffff">size</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">16</span><span style="color:#c05c30">)</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">+</span>
-    <span style="color:#ffffff">coord_fixed</span><span style="color:#c05c30">(</span><span style="color:#ffffff">ratio</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">0</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">+</span>
+    <span style="color:#ffffff">coord_fixed</span><span style="color:#c05c30">(</span><span style="color:#ffffff">ratio</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">1</span><span style="color:#c05c30">)</span> <span style="color:#7fa7bb">+</span>
     <span style="color:#ffffff">stat_ellipse</span><span style="color:#c05c30">(</span><span style="color:#ffffff">level</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">0.95</span><span style="color:#c05c30">)</span>
 </code></pre></div> 
         
@@ -339,6 +339,7 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Cargar el paquete  rgbif y dplyr</span>
 <span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">rgbif</span><span style="color:#c05c30">)</span>
 <span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">dplyr</span><span style="color:#c05c30">)</span>
+<span style="color:#d887b4">library</span><span style="color:#c05c30">(</span><span style="color:#ffffff">scales</span><span style="color:#c05c30">)</span>
 <span style="color:#a5a6aa">## Obtener 1000 registros de GBIF para el género Mammillaria</span> 
 <span style="color:#ffffff">Mammillaria</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">occ_search</span><span style="color:#c05c30">(</span><span style="color:#ffffff">scientificName</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">"Mammillaria"</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">limit</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">1000</span><span style="color:#c05c30">)</span>
 <span style="color:#a5a6aa">## Asignar a una variable el componente data de la lista Mammillaria</span> 
