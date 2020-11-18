@@ -139,14 +139,21 @@
         </div>
         -->
         
+          <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/temas/base_r/" rel="tag">Base R</a>
+            
+        </div> 
           
           <div class="article-tag">
             <i class="fas fa-tag"></i>
             
             
-            <a class="tag-link" href="/temas/funcion/" rel="tag">Funciones</a>
+            <a class="tag-link" href="/temas/tidyverse/" rel="tag">Tidyverse</a>
             
-        </div> 
+        </div>  
         
       </div>
     </header>
@@ -325,7 +332,31 @@
 <span style="color:#ffffff">box_hist_qq_plot</span><span style="color:#c05c30">(</span><span style="color:#ffffff">data</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">airquality</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">var_fact</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">Month</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">level</span> <span style="color:#7fa7bb">=</span> <span style="color:#bdad6e">5</span><span style="color:#ffffff">,</span> <span style="color:#ffffff">var_num</span> <span style="color:#7fa7bb">=</span> <span style="color:#ffffff">Wind</span><span style="color:#c05c30">)</span>
 </code></pre></div>      
         
-<img src="../../images/air_qual_box.png" width="700">        
+<img src="../../images/air_qual_box.png" width="700">     
+        
+        
+    <b><p>Ejercicios</p></b>      
+        
+    <p>Crear una función que calcule la media, varianza y la desviación estándar de un vector. El resultado tiene que devolverlo añadiendo el texto siguiente: La media es igual a “resultado”, la varianza es igual a “resultado” y la desviación estándar es igual a “resultado”. </p>    
+        
+  <img src="../../images/media.png" width="250">
+        
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#2f3445;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#a5a6aa">## Tips para crear la funcion</span>
+<span style="color:#a5a6aa">## Crear un vector de 20 numeros aleatorios que vayan del 1 al 5</span>
+<span style="color:#ffffff">vec_prueba</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">runif</span><span style="color:#c05c30">(</span><span style="color:#bdad6e">20</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">1</span><span style="color:#ffffff">,</span> <span style="color:#bdad6e">5</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## numero de elemntos en el vector</span>
+<span style="color:#ffffff">n_vec</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">length</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_prueba</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## suma del vector </span>
+<span style="color:#ffffff">suma</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">sum</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_prueba</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## obtener la media </span>
+<span style="color:#ffffff">media</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">suma</span><span style="color:#7fa7bb">/</span><span style="color:#ffffff">n_vec</span>
+<span style="color:#a5a6aa">## suma del vector menos la media eleveado al cuadrado </span>
+<span style="color:#ffffff">suma_menos_media_sqrt</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">sum</span><span style="color:#c05c30">(</span><span style="color:#c05c30">(</span><span style="color:#ffffff">vec_prueba</span> <span style="color:#7fa7bb">-</span> <span style="color:#ffffff">media</span><span style="color:#c05c30">)</span><span style="color:#7fa7bb">^</span><span style="color:#bdad6e">2</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## obtener la varianza </span>
+<span style="color:#ffffff">varianza</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">suma_menos_media_sqrt</span><span style="color:#7fa7bb">/</span><span style="color:#c05c30">(</span><span style="color:#ffffff">n_vec</span> <span style="color:#7fa7bb">-</span> <span style="color:#bdad6e">1</span><span style="color:#c05c30">)</span>
+<span style="color:#a5a6aa">## obtener la desviacion estandar </span>
+<span style="color:#ffffff">desv_est</span> <span style="color:#7fa7bb">&#60&#45</span> <span style="color:#ffffff">sqrt</span><span style="color:#c05c30">(</span><span style="color:#ffffff">varianza</span><span style="color:#c05c30">)</span>
+</code></pre></div>            
         
       </div>
   </article>
